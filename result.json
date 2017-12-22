@@ -1,0 +1,28 @@
+[
+	{
+		"_id": "5a3b95999bb84a118942aba2",
+		"name": "regplay1",
+		"password": "code",
+		"email": "play@play.com",
+		"birth_date": "2017-02-09T00:00:00.000Z",
+		"address": "codecity",
+		"height": "tLL",
+		"position": "left wing",
+		"active_years": "45",
+		"activated": false,
+		"__v": 0
+	},
+	{
+		"_id": "5a3ba7204dcc1d1731f22b7b",
+		"name": "regplay1",
+		"password": "code",
+		"email": "food@food.com",
+		"birth_date": "2017-12-13T00:00:00.000Z",
+		"address": "codecity",
+		"height": "5inches",
+		"position": "left wing",
+		"active_years": "5",
+		"activated": false,
+		"__v": 0
+	}
+]
