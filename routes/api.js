@@ -27,12 +27,12 @@ router.post('/', (req, res, next) => {
 
   console.log(fileStream)
 
-  //send to apt destnation to server using ftp
+  //send to apt destination on server using ftp
   const ftp = new PromiseFtp();
   ftp
     .connect({host: ftpCreds.host, user: ftpCreds.user, password: ftpCreds.pass})
     .then(function (serverMessage) {
-      //return ftp.list('/gidiradio/');   
+      //return ftp.list('/gidiradio/');
       return ftp.put(`uploads/${filename}`, `gidiradio/${destination}/${filename}`);
     })
     .then(function () {
@@ -40,6 +40,22 @@ router.post('/', (req, res, next) => {
     });
 })
 
+// router.get('/ftp', function (req, res) {
+//   var PromiseFtp = require('promise-ftp');
+
+//   var ftp = new PromiseFtp();
+//   ftp
+//     .connect({host: ftpCreds.host, user: ftpCreds.user, password: ftpCreds.pass})
+//     .then(function (serverMessage) {
+//       console.log('Server message: ' + serverMessage);
+//       return ftp.list('/');
+//     })
+//     .then(function (list) {
+//       console.log('Directory listing:');
+//       console.dir(list);
+//       return ftp.end();
+//     });
+// });
 /*********HELPERS*********/
 
 /**
