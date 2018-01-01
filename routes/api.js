@@ -20,7 +20,8 @@ router.post('/', (req, res, next) => {
   //create a file by piping into it data from a file's url
   request
     .get(source)
-    .on('error', function (err) {
+    .on('error',(err)=> {
+	if (err)throw err;
       console.log(err)
     })
     .pipe(fileStream);
@@ -56,6 +57,7 @@ router.post('/', (req, res, next) => {
 //       return ftp.end();
 //     });
 // });
+
 /*********HELPERS*********/
 
 /**
