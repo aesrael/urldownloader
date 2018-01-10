@@ -1,11 +1,175 @@
-<!DOCTYPE html>
+
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<head>
+    <meta charset=="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>  <!-- js for the add files area /-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    
+</head>
+<body>
+<style>
+    /* ===================== FILE INPUT ===================== */
+.file-area {
+  width: 100%;
+  position: relative;
+}
+.file-area input[type="file"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.file-area .file-dummy {
+  width: 100%;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  text-align: center;
+  transition: background 0.3s ease-in-out;
+}
+.file-area .file-dummy .success {
+  display: none;
+}
+.file-area:hover .file-dummy {
+  background: rgba(255, 255, 255, 0.1);
+}
+.file-area input[type="file"]:focus + .file-dummy {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline: -webkit-focus-ring-color auto 5px;
+}
+.file-area input[type="file"]:valid + .file-dummy {
+  border-color: rgba(0, 255, 0, 0.4);
+  background-color: rgba(0, 255, 0, 0.3);
+}
+.file-area input[type="file"]:valid + .file-dummy .success {
+  display: inline-block;
+}
+.file-area input[type="file"]:valid + .file-dummy .default {
+  display: none;
+}
+
+/* ===================== BASIC STYLING ===================== */
+* {
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+  height: 100%;
+  background: #053777;
+  color: #fff;
+  font-size: 16px;
+  overflow: hidden;
+  background: -moz-linear-gradient(top, #053777 0%, #00659b 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #053777), color-stop(100%, #00659b));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #053777 0%, #00659b 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #053777 0%, #00659b 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #053777 0%, #00659b 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #053777 0%, #00659b 100%);
+  /* W3C */
+}
+
+h1 {
+  text-align: center;
+  margin: 50px auto;
+  font-weight: 100;
+}
+
+label {
+  font-weight: 500;
+  display: block;
+  margin: 4px 0;
+  text-transform: uppercase;
+  font-size: 13px;
+  overflow: hidden;
+}
+label span {
+  float: right;
+  text-transform: none;
+  font-weight: 200;
+  line-height: 1em;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.form-controll {
+  display: block;
+  padding: 8px 16px;
+  width: 100%;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-weight: 200;
+}
+.form-controll:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+button {
+  padding: 8px 30px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #053777;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 11px;
+  border: 0;
+  text-shadow: 0 1px 2px #fff;
+  cursor: pointer;
+}
+
+.form-group {
+  max-width: 500px;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+</style>
+
+<form id="uploadForm" action='/api/file' enctype="multipart/form-data" method="post">
+    
+    <h1><strong>Gidilounge</strong> upload </h1>
+    
+    <div class="form-group">
+      <label for="source">Url <span>Enter file Url</span></label>
+      <input type="text" name="source" id="title" class="form-controll"/>
+    </div>
+
+    <div class="form-group">
+      <label for="destination">Location <span>Where should this go</span></label>
+      <select name="destination" id="location" class="form-control">
+        <option value="therants">The Rants</option>
+        <option value="songs">Songs</option>
+        <option value="banterera">Banter Era</option>
+        <option value="tlr">The Ladies Room</option>
+        <option value="radiotherapy">Radio Therapy</option>
+      </select>
+
+    <br>
+    <br>
+    <div class="form-group">
+      <button type="submit">Upload</button>
+    </div>
+    
+  </form>
+  <link href='https://fonts.googleapis.com/css?family=Lato:100,200,300,400,500,600,700' rel='stylesheet' type='text/css'>
+  
+
+</body>
 </html>
